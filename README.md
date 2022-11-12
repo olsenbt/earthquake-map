@@ -1,1 +1,1 @@
-# washington-school-map
+# earthquake-map

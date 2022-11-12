@@ -14,7 +14,7 @@
     <main id="container">
         <div id="side-panel">
 
-            <h2>School List</h2>
+            <h2>Olympic Peninsula Schools</h2>
             <button>Sort by School Name</button>
 
             <table>
@@ -37,7 +37,7 @@
         // define the map object
         let map = new mapboxgl.Map({
             container: 'map', // container ID
-            style: 'mapbox://styles/mapbox/satellite-v9', // style URL
+            style: 'mapbox://styles/olsenbt/cladaeyii000414pmy1ei4ryx', // style URL
             zoom: 5.5, // starting zoom
             center: [-120, 47] // starting center
         });
@@ -74,19 +74,6 @@
                     data: schools
                 });
 
-                map.addLayer({
-                    'id': 'schools-layer',
-                    'type': 'circle',
-                    'source': 'schools',
-                    'paint': {
-                        'circle-radius': 5,
-                        'circle-stroke-width': 1,
-                        'circle-color': 'blue',
-                        'circle-stroke-color': 'white'
-                    }
-                });
-
-
                 map.addSource('counties', {
                     type: 'geojson',
                     data: counties
@@ -100,6 +87,29 @@
                         'fill-color': '#0080ff', // blue color fill
                         'fill-opacity': 0.2,
                         'fill-outline-color': '#ffffff'
+                    }
+                });
+
+                map.addLayer({
+                    'id': 'outline',
+                    'type': 'line',
+                    'source': 'counties',
+                    'layout': {},
+                    'paint': {
+                        'line-color': '#e8f7ff',
+                        'line-width': 3
+                    }
+                });
+
+                map.addLayer({
+                    'id': 'schools-layer',
+                    'type': 'circle',
+                    'source': 'schools',
+                    'paint': {
+                        'circle-radius': 5,
+                        'circle-stroke-width': 1,
+                        'circle-color': 'blue',
+                        'circle-stroke-color': 'white'
                     }
                 });
             });
